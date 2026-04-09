@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Predictive Maintenance Dashboard</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ChartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass-panel">
+            <div class="logo">
+                <i class="fa-solid fa-microchip glow-blue"></i>
+                <h2>Nexus AI</h2>
+            </div>
+            <nav id="sidebar-nav">
+                <a class="nav-item active" data-view="dashboard" style="cursor:pointer"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                <a class="nav-item" data-view="equipment" style="cursor:pointer"><i class="fa-solid fa-industry"></i> Equipment</a>
+                <a class="nav-item" data-view="alerts" style="cursor:pointer"><i class="fa-solid fa-triangle-exclamation"></i> Alerts <span class="badge" id="nav-alert-badge">0</span></a>
+                <a class="nav-item" data-view="models" style="cursor:pointer"><i class="fa-solid fa-robot"></i> AI Models</a>
+                <a class="nav-item" data-view="settings" style="cursor:pointer"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div>
+                    <h1>Factory Alpha - Predictive Analytics</h1>
+                    <p class="subtitle">Live sensor telemetry & AI health forecasting</p>
+                </div>
+                <div class="user-profile glass-panel">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=3b82f6&color=fff" alt="User">
+                    <span>Admin</span>
+                </div>
+            </header>
+
+            <!-- APP VIEWS (Tab Switching Layer) -->
+            
+            <!-- VIEW: DASHBOARD (Home) -->
+            <div id="view-dashboard" class="app-view active">
+                <section class="kpi-grid">
+                    <div class="kpi-card glass-panel">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Overall Health Score</span>
+                            <i class="fa-solid fa-heart-pulse icon-green"></i>
+                        </div>
+                        <div class="kpi-value" id="overall-health">98%</div>
+                        <div class="kpi-trend positive"><i class="fa-solid fa-arrow-up"></i> 1.2% from last week</div>
+                    </div>
+                    
+                    <div class="kpi-card glass-panel">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Critical Anomalies</span>
+                            <i class="fa-solid fa-fire-flame-curved icon-red"></i>
+                        </div>
+                        <div class="kpi-value pulse-text" id="critical-anomalies">0</div>
+                        <div class="kpi-trend negative">System Normal</div>
+                    </div>
+
+                    <div class="kpi-card glass-panel">
+                        <div class="kpi-header">
+                            <span class="kpi-title">AI Predicted Failures (7d)</span>
+                            <i class="fa-solid fa-brain icon-blue"></i>
+                        </div>
+                        <div class="kpi-value" id="predicted-failures">0</div>
+                        <div class="kpi-trend warning">Models Active</div>
+                    </div>
+                    
+                    <div class="kpi-card glass-panel">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Avg. Efficiency (OEE)</span>
+                            <i class="fa-solid fa-gauge-high icon-amber"></i>
+                        </div>
+                        <div class="kpi-value" id="oee-value">84.5%</div>
+                        <div class="kpi-trend positive"><i class="fa-solid fa-arrow-up"></i> 0.3% from last week</div>
+                    </div>
+                </section>
+
+                <div class="dashboard-grid">
+                    <!-- Live Telemetry Chart -->
+                    <div class="chart-container glass-panel span-2">
+                        <div class="section-header">
+                            <h3>Live Telemetry (Vibration & Temperature)</h3>
+                            <div class="status-indicator">
+                                <span class="dot live"></span> Live
+                            </div>
+                        </div>
+                        <div class="canvas-wrapper">
+                            <canvas id="telemetryChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- AI Anomaly Detection Engine Log -->
+                    <div class="list-container glass-panel">
+                        <div class="section-header">
+                            <h3>AI Predictive Alerts</h3>
+                        </div>
+                        <div class="alert-list" id="alert-list">
+                            <!-- Alerts injected by JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid second-row">
+                    <!-- Equipment Status Table -->
+                    <div class="table-container glass-panel span-full">
+                        <div class="section-header">
+                            <h3>Equipment Fleet Overview</h3>
+                        </div>
+                        <table class="equipment-table">
+                            <thead>
+                                <tr>
+                                    <th>Equipment ID</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Temperature</th>
+                                    <th>Life (RUL)</th>
+                                    <th>AI Confidence</th>
+                                </tr>
+                            </thead>
+                            <tbody id="equipment-tbody">
+                                <!-- injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> <!-- End Dashboard View -->
+
+            <!-- VIEW: SETTINGS -->
+            <div id="view-settings" class="app-view" style="display: none;">
+                <div class="settings-card glass-panel">
+                    <div class="section-header">
+                        <h3>Configuration & System Controls</h3>
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-info">
+                            <h4>AI Anomaly Injection Rate</h4>
+                            <p>Force the engine to simulate telemetry anomalies (overheating/vibration strikes) to test the predictive model's ability to throw alerts.</p>
+                        </div>
+                        <div class="settings-control">
+                            <input type="range" id="anomaly-slider" min="1" max="50" value="5" class="slider">
+                            <span id="anomaly-val" class="slider-val">5%</span>
+                        </div>
+                    </div>
+                    <div class="settings-row">
+                        <button id="btn-save-settings" class="btn-primary">Save Changes to Backend</button>
+                    </div>
+                </div>
+            </div> <!-- End Settings View -->
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
