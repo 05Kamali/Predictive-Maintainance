@@ -1,12 +1,12 @@
-# 🏭 Factory Alpha – Predictive Analytics Dashboard
+#  Factory Alpha – Predictive Analytics Dashboard
 
-## 📌 Overview
+##  Overview
 Factory Alpha is a full-stack predictive analytics system designed for industrial environments. It collects real-time machine sensor data through APIs, processes it using machine learning models, and provides live insights via a dashboard.
 
 The system enables predictive maintenance, helping industries detect failures early, reduce downtime, and improve operational efficiency.
 
 ---
-## 📊 Dashboard Preview
+##  Dashboard Preview
 
 <p align="center">
   <img src="Dashboard1.png" alt="Dashboard Overview" width="800"/>
@@ -18,7 +18,7 @@ The system enables predictive maintenance, helping industries detect failures ea
 
 ---
 
-## 🚀 Key Features
+##  Key Features
 - Real-time sensor data collection via API  
 - AI-based predictive maintenance system  
 - Live dashboard visualization  
@@ -29,7 +29,7 @@ The system enables predictive maintenance, helping industries detect failures ea
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 - Frontend: HTML, CSS, JavaScript  
 - Backend: FastAPI (Python)  
 - Machine Learning: Scikit-learn  
@@ -39,7 +39,7 @@ The system enables predictive maintenance, helping industries detect failures ea
 
 ---
 
-## 🤖 Machine Learning Workflow
+##  Machine Learning Workflow
 - Data is collected via API and stored in SQLite (`telemetry.db`)  
 - Data is processed using Pandas & NumPy  
 - Model is trained using Scikit-learn (`train_model.py`)  
@@ -48,7 +48,7 @@ The system enables predictive maintenance, helping industries detect failures ea
 
 ---
 
-## ▶️ Running the Project
+##  Running the Project
 
 ### Start Backend (FastAPI)
 ```bash
