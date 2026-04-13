@@ -6,6 +6,17 @@ Factory Alpha is a full-stack predictive analytics system designed for industria
 The system enables predictive maintenance, helping industries detect failures early, reduce downtime, and improve operational efficiency.
 
 ---
+## 📊 Dashboard Preview
+
+<p align="center">
+  <img src="Dashboard1.png" alt="Dashboard Overview" width="800"/>
+</p>
+
+<p align="center">
+  <img src="Dashboard2.png" alt="Prediction Results" width="800"/>
+</p>
+
+---
 
 ## 🚀 Key Features
 - Real-time sensor data collection via API  
